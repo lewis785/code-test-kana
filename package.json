@@ -1,0 +1,31 @@
+{
+  "name": "code-test-kana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewis785/code-test-kana.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lewis785/code-test-kana/issues"
+  },
+  "homepage": "https://github.com/lewis785/code-test-kana#readme",
+  "volta": {
+    "node": "16.14.2",
+    "yarn": "1.22.18"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.6.2"
+  }
+}
