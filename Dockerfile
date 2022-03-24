@@ -9,3 +9,5 @@ COPY yarn.lock ./
 RUN yarn install
 
 COPY src ./src
+COPY tsconfig.json .
+COPY jest.config.js .
