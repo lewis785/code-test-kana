@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Coordinates, Crate, Input } from "./types";
+import { Coordinates, Container, Input } from "./types";
 
 export const parse = (filePath: string): Input => {
   const input = fs.readFileSync(filePath).toString("utf-8").split("\n");
@@ -14,15 +14,15 @@ export const parse = (filePath: string): Input => {
 
   return {
     conveyorBelt: stringToCoordinates(conveyor),
-    robot: stringToCoordinates(robot),
+    robot: { coordinates: stringToCoordinates(robot), bagCount: 0 },
     crates: parseCrates(crates),
     instructions: instructions.split(""),
   };
 };
 
-const parseCrates = (cratesString: string): Crate[] => {
+const parseCrates = (cratesString: string): Container[] => {
   const crates = cratesString.split(", ");
-  return crates.map<Crate>((crateString) => {
+  return crates.map<Container>((crateString) => {
     const [x, y, bags] = crateString.split(" ");
     return {
       coordinates: {

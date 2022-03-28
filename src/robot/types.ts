@@ -3,14 +3,14 @@ export interface Coordinates {
   y: number;
 }
 
-export interface Crate {
+export interface Container {
   coordinates: Coordinates;
   bagCount: number;
 }
 
 export interface Input {
   conveyorBelt: Coordinates;
-  robot: Coordinates;
-  crates: Crate[];
+  robot: Container;
+  crates: Container[];
   instructions: string[];
 }

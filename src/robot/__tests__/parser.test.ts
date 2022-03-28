@@ -4,7 +4,7 @@ describe("#parse", () => {
   it("should return input object", () => {
     expect(parse(`${__dirname}/data/input1.txt`)).toStrictEqual({
       conveyorBelt: { x: 0, y: 2 },
-      robot: { x: 0, y: 0 },
+      robot: { coordinates: { x: 0, y: 0 }, bagCount: 0 },
       crates: [
         { coordinates: { x: 0, y: 1 }, bagCount: 10 },
         { coordinates: { x: -1, y: -2 }, bagCount: 5 },
