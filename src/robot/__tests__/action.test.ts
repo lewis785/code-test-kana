@@ -32,8 +32,8 @@ describe("robot", () => {
         });
       });
 
-      it("should be successful", () => {
-        expect(action(robot, conveyBelt, crates, "P").successful).toBe(true);
+      it("should not error", () => {
+        expect(action(robot, conveyBelt, crates, "P").error).toBe(false);
       });
     });
 
@@ -52,8 +52,8 @@ describe("robot", () => {
         });
       });
 
-      it("should be successful", () => {
-        expect(action(robot, conveyBelt, crates, "P").successful).toBe(true);
+      it("should not error", () => {
+        expect(action(robot, conveyBelt, crates, "P").error).toBe(false);
       });
     });
 
@@ -68,8 +68,8 @@ describe("robot", () => {
         });
       });
 
-      it("should not be successful", () => {
-        expect(action(robot, conveyBelt, crates, "P").successful).toBe(false);
+      it("should error", () => {
+        expect(action(robot, conveyBelt, crates, "P").error).toBe(true);
       });
     });
   });

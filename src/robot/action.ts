@@ -10,7 +10,7 @@ export const action = (
       return pickUpAction(robot, crates);
   }
   console.log(conveyorBelt);
-  return { robot, crates, successful: false };
+  return { robot, crates, error: false };
 };
 
 const pickUpAction = (
@@ -22,11 +22,11 @@ const pickUpAction = (
   const crate = crates[crateId];
 
   if (crate === undefined) {
-    return { robot, crates, successful: false };
+    return { robot, crates, error: true };
   }
 
   if (crate.bagCount === 0) {
-    return { robot, crates, successful: true };
+    return { robot, crates, error: false };
   }
 
   const updatedCrates = {
@@ -37,6 +37,6 @@ const pickUpAction = (
   return {
     robot: { ...robot, bagCount: robot.bagCount + 1 },
     crates: updatedCrates,
-    successful: true,
+    error: false,
   };
 };

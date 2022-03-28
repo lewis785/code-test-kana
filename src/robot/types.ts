@@ -18,5 +18,5 @@ export interface Input {
 export interface Output {
   robot: Container;
   crates: Record<string, Container>;
-  successful: boolean;
+  error: boolean;
 }
