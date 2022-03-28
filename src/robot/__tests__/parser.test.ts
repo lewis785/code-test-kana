@@ -5,10 +5,10 @@ describe("#parse", () => {
     expect(parse(`${__dirname}/data/input1.txt`)).toStrictEqual({
       conveyorBelt: { x: 0, y: 2 },
       robot: { coordinates: { x: 0, y: 0 }, bagCount: 0 },
-      crates: [
-        { coordinates: { x: 0, y: 1 }, bagCount: 10 },
-        { coordinates: { x: -1, y: -2 }, bagCount: 5 },
-      ],
+      crates: {
+        "0:1": { coordinates: { x: 0, y: 1 }, bagCount: 10 },
+        "-1:-2": { coordinates: { x: -1, y: -2 }, bagCount: 5 },
+      },
       instructions: ["N", "P", "P", "P", "N", "D"],
     });
   });

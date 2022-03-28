@@ -20,18 +20,18 @@ export const parse = (filePath: string): Input => {
   };
 };
 
-const parseCrates = (cratesString: string): Container[] => {
+const parseCrates = (cratesString: string): Record<string, Container> => {
   const crates = cratesString.split(", ");
-  return crates.map<Container>((crateString) => {
-    const [x, y, bags] = crateString.split(" ");
+  return crates.reduce((output, crate) => {
+    const [x, y, bags] = crate.split(" ");
     return {
-      coordinates: {
-        x: Number(x),
-        y: Number(y),
+      ...output,
+      [`${x}:${y}`]: {
+        coordinates: { x: Number(x), y: Number(y) },
+        bagCount: Number(bags),
       },
-      bagCount: Number(bags),
     };
-  });
+  }, {});
 };
 
 const stringToCoordinates = (coordString: string): Coordinates => {

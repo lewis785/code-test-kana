@@ -11,6 +11,6 @@ export interface Container {
 export interface Input {
   conveyorBelt: Coordinates;
   robot: Container;
-  crates: Container[];
+  crates: Record<string, Container>;
   instructions: string[];
 }
