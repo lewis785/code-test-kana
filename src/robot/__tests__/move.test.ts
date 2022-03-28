@@ -9,12 +9,12 @@ describe("move", () => {
     expect(move({ x: 0, y: 0 }, "S")).toStrictEqual({ x: 0, y: -1 });
   });
 
-  it("should increase x if direction is W", () => {
-    expect(move({ x: 0, y: 0 }, "W")).toStrictEqual({ x: 1, y: 0 });
+  it("should increase x if direction is E", () => {
+    expect(move({ x: 0, y: 0 }, "E")).toStrictEqual({ x: 1, y: 0 });
   });
 
-  it("should decrease x if direction is E", () => {
-    expect(move({ x: 0, y: 0 }, "E")).toStrictEqual({ x: -1, y: 0 });
+  it("should decrease x if direction is W", () => {
+    expect(move({ x: 0, y: 0 }, "W")).toStrictEqual({ x: -1, y: 0 });
   });
 
   it("should throw error if invalid direction provided", () => {
