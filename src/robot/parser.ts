@@ -13,7 +13,7 @@ export const parse = (filePath: string): Input => {
   const [conveyor, robot, crates, instructions] = input;
 
   return {
-    conveyorBelt: stringToCoordinates(conveyor),
+    conveyorBelt: { coordinates: stringToCoordinates(conveyor), bagCount: 0 },
     robot: { coordinates: stringToCoordinates(robot), bagCount: 0 },
     crates: parseCrates(crates),
     instructions: instructions.split(""),

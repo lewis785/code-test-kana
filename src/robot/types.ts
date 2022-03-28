@@ -9,7 +9,7 @@ export interface Container {
 }
 
 export interface Input {
-  conveyorBelt: Coordinates;
+  conveyorBelt: Container;
   robot: Container;
   crates: Record<string, Container>;
   instructions: string[];
@@ -18,5 +18,6 @@ export interface Input {
 export interface Output {
   robot: Container;
   crates: Record<string, Container>;
+  conveyorBelt: Container;
   error: boolean;
 }
