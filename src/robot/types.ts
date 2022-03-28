@@ -14,3 +14,9 @@ export interface Input {
   crates: Record<string, Container>;
   instructions: string[];
 }
+
+export interface Output {
+  robot: Container;
+  crates: Record<string, Container>;
+  successful: boolean;
+}
