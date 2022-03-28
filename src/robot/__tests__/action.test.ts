@@ -73,4 +73,53 @@ describe("robot", () => {
       });
     });
   });
+
+  describe("drop action", () => {
+    describe("not over conveyor belt", () => {
+      it("should set robot bag count to zero", () => {
+        expect(action(robot, conveyBelt, crates, "D").robot.bagCount).toBe(0);
+      });
+
+      it("should error", () => {
+        expect(action(robot, conveyBelt, crates, "D").error).toBe(true);
+      });
+    });
+
+    describe("over conveyor belt", () => {
+      beforeEach(() => {
+        conveyBelt = { x: 0, y: 0 };
+      });
+
+      it("should set robot bag count to zero", () => {
+        expect(action(robot, conveyBelt, crates, "D").robot.bagCount).toBe(0);
+      });
+
+      it("should error", () => {
+        expect(action(robot, conveyBelt, crates, "D").error).toBe(false);
+      });
+    });
+  });
+
+  describe("move action", () => {
+    it("should not change crates", () => {
+      expect(action(robot, conveyBelt, crates, "N").crates).toStrictEqual(
+        crates
+      );
+    });
+
+    it("should not error", () => {
+      expect(action(robot, conveyBelt, crates, "N").error).toBe(false);
+    });
+
+    it.each([
+      ["N", { x: 0, y: 1 }],
+      ["S", { x: 0, y: -1 }],
+      ["W", { x: 1, y: 0 }],
+      ["E", { x: -1, y: 0 }],
+    ])("should move robot in direction: %s", (direction, expectedPosition) => {
+      expect(
+        action(robot, conveyBelt, crates, direction).robot.coordinates
+      ).toStrictEqual(expectedPosition);
+    });
+  });
 });

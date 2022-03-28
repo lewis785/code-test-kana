@@ -1,3 +1,4 @@
+import { move } from "./move";
 import { Coordinates, Container, Output } from "./types";
 export const action = (
   robot: Container,
@@ -8,9 +9,28 @@ export const action = (
   switch (action) {
     case "P":
       return pickUpAction(robot, crates);
+    case "D":
+      return { crates, ...dropAction(robot, conveyorBelt) };
+    default:
+      return { crates, error: false, robot: moveAction(robot, action) };
   }
-  console.log(conveyorBelt);
-  return { robot, crates, error: false };
+};
+
+const dropAction = (
+  robot: Container,
+  conveyorBelt: Coordinates
+): { robot: Container; error: boolean } => {
+  const { coordinates } = robot;
+
+  const isOverConveyor =
+    coordinates.x === conveyorBelt.x && coordinates.y === conveyorBelt.y;
+
+  return { robot: { ...robot, bagCount: 0 }, error: !isOverConveyor };
+};
+
+const moveAction = (robot: Container, direction: string): Container => {
+  const newPosition = move(robot.coordinates, direction);
+  return { ...robot, coordinates: newPosition };
 };
 
 const pickUpAction = (
