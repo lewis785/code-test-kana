@@ -10,33 +10,39 @@ export const dictionaryDash = (
     return -1;
   }
 
-  return findShortestPath(new Set([start]), end, new Set(dictionary), 0);
+  return shortestPath(new Set([start]), end, dictionarySet, 0);
 };
 
-const findShortestPath = (
-  visit: Set<string>,
+const shortestPath = (
+  visits: Set<string>,
   end: string,
   dictionary: Set<string>,
   depth: number
 ): number => {
-  if (visit.has(end)) {
+  if (visits.has(end)) {
     return depth;
   }
-  const nextVisit = new Set<string>();
 
-  visit.forEach((word) => {
-    dictionary.forEach((dict) => {
-      console.log({ word, dict });
-      if (levenshtein.get(word, dict) === 1) {
-        nextVisit.add(dict);
-        dictionary.delete(dict);
-      }
-    });
-  });
+  const nextVisit = findVisitNext(visits, dictionary);
 
   if (nextVisit.size === 0) {
     return -1;
   }
 
-  return findShortestPath(nextVisit, end, dictionary, depth + 1);
+  return shortestPath(nextVisit, end, dictionary, depth + 1);
+};
+
+const findVisitNext = (visits: Set<string>, dictionary: Set<string>) => {
+  const visitNext = new Set<string>();
+
+  visits.forEach((visitWord) => {
+    dictionary.forEach((dictionaryWord) => {
+      if (levenshtein.get(visitWord, dictionaryWord) === 1) {
+        visitNext.add(dictionaryWord);
+        dictionary.delete(dictionaryWord);
+      }
+    });
+  });
+
+  return visitNext;
 };
