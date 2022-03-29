@@ -70,11 +70,11 @@ yarn test:watch
 
 I looked up how to easily compare two words for being one character apart, learned about the Levenshtein algorithm. Then I looked for an npm package which implemented the algorithm and installed it.
 
-To start writing the code I added a test for if start and end were the same, then implemented the code to make the test pass. After that I iteratively added functionality using TDD.
+I then started following TDD adding small tests one at a time. Once I had it working on the provided example, I went back and started refactoring the implementation. Thanks to the test that were create I could refactor without fearing that I would break functionality.
 
 ### How did you check that your solution is correct?
 
-I wrote a test first using the example provided in the task. Then I started by adding simple test cases such as, returning 0 if end word is not in the dictionary.
+I wrote a test first using the example provided in the task, if this case pass then I have a valid solution. While adding functionality I fold TDD and added failing test first, then added the code to make it pass. I repeated this until the first test passed, after that I added a few more possible paths and tests that the lengths were correct.
 
 ### Specify any assumptions that you have made
 
@@ -83,3 +83,4 @@ I wrote a test first using the example provided in the task. Then I started by a
 - Start/End word could be bigger/smaller than the dictionary words
 - Start/End word could be a number string
 - End word might not be in the dictionary
+- It is better to fail quickly. Without the input validation the test still pass, but would waste resource as failing inputs have to run through the whole dictionary to check they don't work. We can quickly check for failing cases and prevent wasting time searching.
