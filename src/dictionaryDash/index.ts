@@ -5,12 +5,11 @@ export const dictionaryDash = (
   end: string,
   dictionary: string[]
 ) => {
-  const dictionarySet = new Set(dictionary);
-  if (!dictionarySet.has(end)) {
+  if (isInvalidInput(start, end, dictionary)) {
     return -1;
   }
 
-  return shortestPath(new Set([start]), end, dictionarySet, 0);
+  return shortestPath(new Set([start]), end, new Set(dictionary), 0);
 };
 
 const shortestPath = (
@@ -45,4 +44,17 @@ const findVisitNext = (visits: Set<string>, dictionary: Set<string>) => {
   });
 
   return visitNext;
+};
+
+const isInvalidInput = (start: string, end: string, dictionary: string[]) => {
+  if (!dictionary.find((ele) => ele === end)) {
+    return true;
+  }
+
+  if (!isNaN(Number(start)) || !isNaN(Number(end))) {
+    console.log("Is a number not a string", { start, end });
+    return true;
+  }
+
+  return start.length !== dictionary[0].length;
 };

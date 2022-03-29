@@ -14,6 +14,22 @@ describe("#dictionaryDash", () => {
     expect(dictionaryDash("ask", "cog", dictionary)).toBe(-1);
   });
 
+  it("should return -1 if start word is too long", () => {
+    expect(dictionaryDash("shark", "cog", dictionary)).toBe(-1);
+  });
+
+  it("should return -1 if start word is too short", () => {
+    expect(dictionaryDash("a", "cog", dictionary)).toBe(-1);
+  });
+
+  it("should return -1 if start word is a number", () => {
+    expect(dictionaryDash("1", "cog", dictionary)).toBe(-1);
+  });
+
+  it("should return -1 if end word is a number", () => {
+    expect(dictionaryDash("hit", "1", dictionary)).toBe(-1);
+  });
+
   it.each([
     ["cog", "log", 1],
     ["hit", "dot", 2],
