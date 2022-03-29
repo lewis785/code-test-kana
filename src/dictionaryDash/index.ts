@@ -52,7 +52,6 @@ const isInvalidInput = (start: string, end: string, dictionary: string[]) => {
   }
 
   if (!isNaN(Number(start)) || !isNaN(Number(end))) {
-    console.log("Is a number not a string", { start, end });
     return true;
   }
 
